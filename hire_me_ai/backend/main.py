@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from groq import Groq
 from pydantic import BaseModel
 from pypdf import PdfReader
+from fastapi.middleware.cors import CORSMiddleware
 # 
 load_dotenv()
 
@@ -17,6 +18,14 @@ client = Groq(
 model = "openai/gpt-oss-120b"
 app=FastAPI()
 
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 #parse resume
